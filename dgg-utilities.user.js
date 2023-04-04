@@ -2289,6 +2289,15 @@ function injectScript() {
       let resultLinks;
       let resultNukes;
       let result;
+      
+      // exclude whispers sent using slash commands 
+      if(text.startsWith("/w ") || text.startsWith("/whisper ")){
+        return false;
+      }
+      // exclude if the main chat window is inactive
+      if(!$('#chat-windows-select span[title="Destiny GG"].active').length){
+        return false;
+      }
 
       if (phrases.length > 0) {
         for (let entry of phrases) {
